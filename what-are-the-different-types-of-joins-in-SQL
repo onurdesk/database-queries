@@ -1,0 +1,69 @@
+#Inner Join 
+
+- Query 1
+SELECT * FROM Actors a INNER JOIN Actors b;
+
+-- Query 2
+SELECT * FROM Actors a INNER JOIN Actors b USING(FirstName);
+
+-- Query 3
+SELECT * FROM Actors a INNER JOIN Actors b USING(NetWorthInMillions);
+
+
+
+# LEFT JOIN
+
+-- Query 1
+SELECT FirstName, SecondName, AssetType, URL FROM Actors LEFT JOIN DigitalAssets ON Actors.Id = DigitalAssets.ActorID;
+-- Query 2
+SELECT FirstName, SecondName, AssetType, URL FROM DigitalAssets LEFT JOIN Actors ON Actors.Id = DigitalAssets.ActorID;
+-- Query 3
+SELECT FirstName, SecondName, AssetType, URL FROM Actor RIGHT JOIN DigitalAssets ON Actors.Id = DigitalAssets.ActorID;
+
+
+#UNION in SQL
+
+-- Query 1
+SELECT FirstName FROM Actors UNION SELECT URL FROM DigitalAssets;
+
+-- Query 2
+(SELECT CONCAT(FirstName, ' ', SecondName) AS "Actor Name" FROM ActorsORDER BY NetworthInMillions DESC LIMIT 2) UNION (SELECT CONCAT(FirstName, ' ', SecondName) AS "ThisAliasIsIgnored" FROM Actors ORDER BY Networth InMillions ASCLIMIT 2);
+
+-- Query 3
+SELECT FirstName, Id FROM Actors UNION SELECT FirstName FROM Actors;
+
+-- Query 4
+SELECT FirstName, Id FROM Actors UNION SELECT FirstName, null FROM Actors;
+
+-- Query 5
+SELECT MaritalStatus FROM Actors UNION SELECT Gender FROM Actors;
+
+-- Query 6
+SELECT MaritalStatus FROM Actors UNION ALL SELECT Gender FROM Actors;
+
+-- Query 7
+(SELECT CONCAT(FirstName, ' ', SecondName) AS "Actor Name" FROM Actors ORDER BY NetworthInMillions DESC LIMIT 2) UNION (SELECT NetworthInMillions FROM Actors ORDER BY NetworthInMillions ASC);
+
+-- Query 8
+(SELECT CONCAT(FirstName, ' ', SecondName) AS "Actor Name" FROM Actors ORDER BY NetworthInMillions DESC LIMIT 2) UNION (SELECT NetworthInMillions FROM Actors ORDER BY NetworthInMillions ASC LIMIT 3);
+
+
+
+#NATURAL  JOin 
+-- Query 1
+SELECT FirstName, SecondName, AssetType, URL FROM Actors NATURAL JOIN DigitalAssets;
+
+-- Query 2
+SELECT FirstName, SecondName, AssetType, URL FROM Actors INNER JOIN DigitalAssets;
+
+-- Query 3
+-- Alter the column name
+ALTER TABLE DigitalAssets CHANGE ActorId Id INT;
+-- rerun the previous query
+SELECT FirstName, SecondName, AssetType, URL FROM Actors NATURAL JOIN DigitalAssets;
+
+-- Query 4
+SELECT FirstName, SecondName, AssetType, URL FROM Actors INNER JOIN DigitalAssets USING (Id);
+
+-- Query 5
+SELECT FirstName, SecondName, AssetType, URL FROM Actors NATURAL LEFT OUTER JOIN DigitalAssets;
