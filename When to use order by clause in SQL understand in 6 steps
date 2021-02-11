@@ -1,0 +1,29 @@
+
+
+#When to use order by clause in SQL understand in 6 steps 
+-- Query 1
+SELECT * FROM Actors ORDER BY FirstName;
+
+-- Query 2
+SELECT * FROM Actors ORDER BY FirstName DESC;
+
+-- Query 3
+SELECT * FROM Actors ORDER BY NetWorthInMillions, FirstName;
+
+-- Query 4
+SELECT * FROM Actors ORDER BY NetWorthInMillions, SecondName;
+
+-- Query 5
+SELECT * FROM Actors ORDER BY NetWorthInMillions DESC, FirstName ASC;
+
+-- Query 6
+SELECT * FROM Actors ORDER BY NetWorthInMillions DESC, FirstName DESC;
+
+-- Query 7
+SELECT * FROM Actors ORDER BY BINARY FirstName;
+
+-- Query 8
+SELECT * FROM Actors ORDER BY NetWorthInMillions;
+
+-- Query 9
+SELECT * FROM Actors ORDER BY CAST(NetWorthInMillions AS CHAR);
